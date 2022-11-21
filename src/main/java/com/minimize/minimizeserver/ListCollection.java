@@ -1,4 +1,4 @@
-package com.minimize.minimizeserver.model;
+package com.minimize.minimizeserver;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

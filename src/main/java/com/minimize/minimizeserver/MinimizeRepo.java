@@ -1,6 +1,5 @@
 package com.minimize.minimizeserver;
 
-import com.minimize.minimizeserver.model.ListCollection;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;

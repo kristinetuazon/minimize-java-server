@@ -1,7 +1,4 @@
-package com.minimize.minimizeserver.controller;
-import com.minimize.minimizeserver.MinimizeRepo;
-import com.minimize.minimizeserver.model.ListCollection;
-import com.minimize.minimizeserver.service.Service;
+package com.minimize.minimizeserver;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

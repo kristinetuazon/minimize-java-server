@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.query.Query;
 
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -24,6 +25,7 @@ public class ListCollection {
     private List<Object> finalList;
     private List<Object> maybeList;
     private List<Object> sessions;
+
     private Date dateCreated;
     private Date dateUpdated;
 

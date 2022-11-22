@@ -1,13 +1,11 @@
 package com.minimize.minimizeserver;
-import lombok.val;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/")
+@CrossOrigin
 public class MinimizeController {
 
     private final MinimizeRepo repository;
@@ -19,19 +17,18 @@ public class MinimizeController {
     }
 
 
+    //Get
     @GetMapping("/all")
     public List<ListCollection> getAll() {
     return service.getAll();
         }
 
+    @GetMapping("get/{uId}")
+    public List<ListCollection> getByUid (@PathVariable String uId)
+    { return service.getByUid(uId); }
 
-@RequestMapping("/goodbye")
-public String goodBye () {
-    return "ByeBye";
-}
+    @GetMapping("list/{nameOfList}")
+    public List<ListCollection> getByListName (@PathVariable String nameOfList)
+    { return service.getByListName(nameOfList);}
 
-@RequestMapping("/hello")
-public String helloWorld () {
-    return "Hello world from SpringBoot";
-    }
 }

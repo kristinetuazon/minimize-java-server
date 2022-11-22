@@ -4,21 +4,24 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
-public interface MinimizeRepo extends MongoRepository <ListCollection, String> {
+public interface MinimizeRepo extends MongoRepository <Collection, String> {
 
     //find
-    List<ListCollection> findByuId(String uId);
+   List<Collection> findByuId(String uId);
 
-    List<ListCollection> findBynameOfList(String nameOfList);
+   List<Collection> findBynameOfList(String nameOfList);
+
+   Optional<Collection> findById(String nameOfList);
 
     //change and update
-    List save (List ListCollection);
+    Collection save(Collection collection);
 
     //delete
-//    void delete (String id);
 
+    void deleteByNameOfList(String nameOfList);
 
-    void delete(String nameOfList);
+    void deleteById(String id);
 }

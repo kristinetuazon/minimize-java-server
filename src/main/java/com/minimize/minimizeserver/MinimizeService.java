@@ -1,6 +1,8 @@
 package com.minimize.minimizeserver;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MinimizeService {
@@ -12,29 +14,36 @@ public class MinimizeService {
 
     //general get
 
-    public List<ListCollection> getAll() {
+    public List<Collection> getAll() {
         return repository.findAll();
     }
 
     //queries for specificity
-    public List<ListCollection> getByUid(String uId) {
+    public List<Collection> getByUid(String uId) {
         return repository.findByuId(uId);
     }
 
-    public List<ListCollection> getByListName(String nameOfList) {
+    public List<Collection> getByListName(String nameOfList) {
         return repository.findBynameOfList(nameOfList);
+    }
+    public Optional<Collection> getById(String id) {
+        return repository.findById(id);
     }
 
     //Post
-    public List saveOrUpdateList (List ListCollection) {
-        return repository.save(ListCollection);
+    public Collection save(Collection collection) {
+        return repository.save(collection);
     }
 
     //Delete
     public void deleteByNameOfList (String nameOfList) {
-        repository.delete(nameOfList);
+        repository.deleteByNameOfList(nameOfList);
     }
 
+
+    public void deleteById(String id) {
+        repository.deleteById(id);
+    }
 }
 
 

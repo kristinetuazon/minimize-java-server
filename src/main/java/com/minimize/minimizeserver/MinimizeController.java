@@ -1,7 +1,9 @@
 package com.minimize.minimizeserver;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/")
@@ -16,19 +18,38 @@ public class MinimizeController {
         this.service = service;
     }
 
-
     //Get
     @GetMapping("/all")
-    public List<ListCollection> getAll() {
+    public List<Collection> getAll() {
     return service.getAll();
         }
-
     @GetMapping("get/{uId}")
-    public List<ListCollection> getByUid (@PathVariable String uId)
+    public List<Collection> getByUid (@PathVariable String uId)
     { return service.getByUid(uId); }
-
-    @GetMapping("list/{nameOfList}")
-    public List<ListCollection> getByListName (@PathVariable String nameOfList)
+    @GetMapping("get/list/{nameOfList}")
+    public List<Collection> getByListName (@PathVariable String nameOfList)
     { return service.getByListName(nameOfList);}
+    @GetMapping("get/id/{id}")
+    public Optional<Collection> getById (@PathVariable String id)
+    { return service.getById(id);}
+
+    //POST
+    @PostMapping("/add/newCollection")
+    public Collection postNewCollection (@RequestBody Collection collection) {
+       return service.save(collection);
+    }
+
+    //Delete
+    @DeleteMapping("/delete/list/{nameOfList}")
+    @Transactional
+    public void deleteByListName (@PathVariable String nameOfList) {
+        service.deleteByNameOfList(nameOfList);
+    }
+
+    @DeleteMapping("/delete/id/{id}")
+    @Transactional
+    public void deleteById (@PathVariable String id) {
+        service.deleteById(id);
+    }
 
 }

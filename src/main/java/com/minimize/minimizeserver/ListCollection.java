@@ -3,7 +3,11 @@ package com.minimize.minimizeserver;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @Document(collection="lists")
@@ -20,9 +24,12 @@ public class ListCollection {
     private List<Object> finalList;
     private List<Object> maybeList;
     private List<Object> sessions;
+    private Date dateCreated;
+    private Date dateUpdated;
 
 
-    public ListCollection(String nameOfList, String userEmail, String uId, String listDescription, List<Object> initialList, List<Object> deletedList, List<Object> finalList, List<Object> maybeList, List<Object> sessions) {
+
+    public ListCollection(String nameOfList, String userEmail, String uId, String listDescription, List<Object> initialList, List<Object> deletedList, List<Object> finalList, List<Object> maybeList, List<Object> sessions, Timestamp dateCreated, Timestamp dateUpdated) {
 
         this.nameOfList = nameOfList;
         this.userEmail = userEmail;
@@ -33,6 +40,8 @@ public class ListCollection {
         this.finalList = finalList;
         this.maybeList = maybeList;
         this.sessions = sessions;
+        this.dateCreated = dateCreated;
+        this.dateUpdated = dateUpdated;
     }
 
 }

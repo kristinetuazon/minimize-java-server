@@ -1,4 +1,6 @@
 package com.minimize.minimizeserver;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -43,26 +45,45 @@ public class MinimizeController {
 
     //Post
     @PostMapping("/add/newCollection")
-    Collection postNewCollection (@RequestBody Collection collection) {
-       return service.save(collection);
+    ResponseEntity<String> postNewCollection (@RequestBody Collection collection) {
+        try {
+            service.save(collection);
+            return new ResponseEntity<>("Added new Collection", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+        }
     }
 
-//    @PutMapping("/update/deletedList/{id}")
-//    Optional<Collection> updateDeletedList(@RequestBody Object newDeletedList, @PathVariable String id) {
-//        Optional<Collection> dbInformation = service.getById(id).setDeletedList(newDeletedList);
-//                return dbInformation;
-//    }
+    @PutMapping("/update/{id}")
+    ResponseEntity<String> updateDeletedList(@RequestBody Collection changeCollection, @PathVariable("id") String id) {
+        try {
+            service.updateById(id, changeCollection);
+            return new ResponseEntity<>("Update the Collection" + id, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+    }
 
     //Delete
     @DeleteMapping("/delete/list/{nameOfList}")
     @Transactional
-    void deleteByListName (@PathVariable String nameOfList) {
-        service.deleteByNameOfList(nameOfList);
+    ResponseEntity<String> deleteByListName (@PathVariable String nameOfList) {
+        try {
+            service.deleteByNameOfList(nameOfList);;
+            return new ResponseEntity<>("Deleted the Collection", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+        }
     }
     @DeleteMapping("/delete/id/{id}")
     @Transactional
-    void deleteById (@PathVariable String id) {
-        service.deleteById(id);
+    ResponseEntity<String> deleteById (@PathVariable String id) {
+        try {
+            service.deleteById(id);
+            return new ResponseEntity<>("Deleted the Collection", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+        }
     }
 
 }

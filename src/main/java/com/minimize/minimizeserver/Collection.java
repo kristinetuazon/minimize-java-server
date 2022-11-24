@@ -16,7 +16,6 @@ public class Collection {
 
     @Id
     private String id;
-
     private String nameOfList;
     private String userEmail;
     private String uId;
@@ -55,6 +54,14 @@ public class Collection {
         return uId;
     }
 
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public String setUserEmail(String userEmail) {
+        return this.userEmail = userEmail;
+    }
+
     public String getNameOfList() {
         return nameOfList;
     }
@@ -69,6 +76,18 @@ public class Collection {
 
     public void setListDescription(String listDescription) {
         this.listDescription = listDescription;
+    }
+
+    public void setDeletedList (List deletedList) {
+        this.deletedList = deletedList;
+    }
+
+    public void setFinalList (List finalList) {
+        this.finalList = finalList;
+    }
+
+    public void setMaybeList (List maybeList) {
+        this.maybeList = maybeList;
     }
 
 

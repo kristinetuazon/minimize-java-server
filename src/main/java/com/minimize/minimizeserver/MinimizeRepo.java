@@ -16,6 +16,8 @@ public interface MinimizeRepo extends MongoRepository <Collection, String> {
 
    Optional<Collection> findById(String nameOfList);
 
+   List<Collection> getByuserEmail(String userEmail);
+
     //change and update
     Collection save(Collection collection);
 
@@ -24,4 +26,6 @@ public interface MinimizeRepo extends MongoRepository <Collection, String> {
     void deleteByNameOfList(String nameOfList);
 
     void deleteById(String id);
+
+
 }

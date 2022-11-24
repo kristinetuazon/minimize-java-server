@@ -13,42 +13,51 @@ public class MinimizeController {
     private final MinimizeRepo repository;
     private final MinimizeService service;
 
-    public MinimizeController(MinimizeRepo repository, MinimizeService service){
+    MinimizeController(MinimizeRepo repository, MinimizeService service){
         this.repository = repository;
         this.service = service;
     }
 
     //Get
     @GetMapping("/all")
-    public List<Collection> getAll() {
+    List<Collection> getAll() {
     return service.getAll();
         }
     @GetMapping("get/{uId}")
-    public List<Collection> getByUid (@PathVariable String uId)
+    List<Collection> getByUid (@PathVariable String uId)
     { return service.getByUid(uId); }
     @GetMapping("get/list/{nameOfList}")
-    public List<Collection> getByListName (@PathVariable String nameOfList)
+    List<Collection> getByListName (@PathVariable String nameOfList)
     { return service.getByListName(nameOfList);}
     @GetMapping("get/id/{id}")
-    public Optional<Collection> getById (@PathVariable String id)
+    Optional<Collection> getById (@PathVariable String id)
     { return service.getById(id);}
+    @GetMapping("get/email/{userEmail}")
+    List<Collection> getByEmail (@PathVariable String userEmail) {
+        return service.getByEmail(userEmail);
+    }
 
-    //POST
+    //Post
     @PostMapping("/add/newCollection")
-    public Collection postNewCollection (@RequestBody Collection collection) {
+    Collection postNewCollection (@RequestBody Collection collection) {
        return service.save(collection);
     }
+
+//    @PutMapping("/update/deletedList/{id}")
+//    Optional<Collection> updateDeletedList(@RequestBody Object newDeletedList, @PathVariable String id) {
+//        Optional<Collection> dbInformation = service.getById(id).setDeletedList(newDeletedList);
+//                return dbInformation;
+//    }
 
     //Delete
     @DeleteMapping("/delete/list/{nameOfList}")
     @Transactional
-    public void deleteByListName (@PathVariable String nameOfList) {
+    void deleteByListName (@PathVariable String nameOfList) {
         service.deleteByNameOfList(nameOfList);
     }
-
     @DeleteMapping("/delete/id/{id}")
     @Transactional
-    public void deleteById (@PathVariable String id) {
+    void deleteById (@PathVariable String id) {
         service.deleteById(id);
     }
 

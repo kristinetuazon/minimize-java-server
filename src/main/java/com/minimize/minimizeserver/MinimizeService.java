@@ -55,6 +55,17 @@ public class MinimizeService {
         }
     }
 
+    public void updateListsByStringId(String id, Collection collection) {
+        Optional<Collection> collectionWithId = repository.findById(id);
+        if(collectionWithId.isPresent()) {
+            Collection collectionToUpdate = collectionWithId.get();
+
+            collectionToUpdate.setDeletedList(collection.getDeletedList());
+            collectionToUpdate.setMaybeList(collection.getMaybeList());
+            collectionToUpdate.setFinalList(collection.getFinalList());
+        }
+    }
+    //welcome endpoint
     public String helloWorld() {
         String message = "Hello World";
         return message;

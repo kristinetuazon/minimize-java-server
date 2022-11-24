@@ -58,10 +58,21 @@ public class MinimizeController {
     ResponseEntity<String> updateDeletedList(@RequestBody Collection changeCollection, @PathVariable("id") String id) {
         try {
             service.updateById(id, changeCollection);
-            return new ResponseEntity<>("Update the Collection" + id, HttpStatus.OK);
+            return new ResponseEntity<>("Update the Collection with the id: " + id, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
         }
+    }
+
+    @PutMapping("/update/list/{id}")
+    ResponseEntity<String> updateLists(@RequestBody Collection newLists, @PathVariable("id") String id) {
+        try {
+            service.updateListsByStringId(id, newLists);
+            return new ResponseEntity<>("Updated the collection lists with this information: "+newLists, HttpStatus.UNPROCESSABLE_ENTITY);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(),HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+
     }
 
     //Delete

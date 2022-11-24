@@ -42,6 +42,11 @@ public class MinimizeService {
     public void deleteById(String id) {
         repository.deleteById(id);
     }
+
+    public String helloWorld() {
+        String message = "Hello World";
+        return message;
+    }
 }
 
 

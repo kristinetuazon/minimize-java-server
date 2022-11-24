@@ -19,6 +19,10 @@ public class MinimizeController {
     }
 
     //Get
+    @GetMapping("/")
+    String helloWorld() {
+        return service.helloWorld();
+    }
     @GetMapping("/all")
     List<Collection> getAll() {
     return service.getAll();
